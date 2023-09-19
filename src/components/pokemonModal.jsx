@@ -9,9 +9,10 @@ const PokemonModal = () => {
   const handleClose = () => {
     setIsOpenModal(false);
   };
+  console.log('pekemon', pokemon);
   return (
     <Modal handleClose={handleClose} isOpen={isOpenModal}>
-      {/* {!pokemon ? <></> : <PokemonStats pokemon={pokemon} />} */}
+      {pokemon && isOpenModal ? <PokemonStats pokemon={pokemon} /> : null}
     </Modal>
   );
 };
