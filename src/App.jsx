@@ -15,16 +15,18 @@ function App() {
   return (
     <>
       <div className='mx-auto my-10 space-y-6 max-w-screen-lg'>
-        <div className='mx-auto max-w-fit'>
-          <img
-            src='https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg'
-            alt=''
-          />
-        </div>
-        <div className='max-w-md mx-auto'>
-          <SearchFilter />
-        </div>
-        <div className='flex justify-center'>
+        <header className='flex justify-around items-center'>
+          <div className=' max-w-fit'>
+            <img
+              src='https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg'
+              alt=''
+            />
+          </div>
+          <div className=''>
+            <SearchFilter />
+          </div>
+        </header>
+        <div className='flex justify-center text-white'>
           {isLoading && !error ? (
             <>Loading ...</>
           ) : data && search === data.name ? (

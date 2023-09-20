@@ -13,7 +13,7 @@ const PokemonCard = ({ name = ' ', url = '' }) => {
     setOpenPokemonModal(true);
   };
   return (
-    <div className='flex bg-white items-stretch h-full flex-col shadow-md space-y-3 px-4 py-2 rounded-lg min-w-[150px]'>
+    <div className='flex bg-[#302f2f] text-white items-stretch h-full flex-col shadow-md space-y-3 px-4 py-2 rounded-lg min-w-[150px]'>
       {!isLoading && data ? (
         <>
           <img
