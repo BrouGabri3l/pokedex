@@ -37,7 +37,61 @@ Para melhor organização do código, o acesso a resposta da API foi separado em
 
 Onde os hooks **usePokemon** e **usePokemonList** utilizam o **useLoadApi** para acesso a api
 
+Estes hooks são utilizados para criar uma abstração de funcionalidades que podem ser reutilizadas, deixando assim o código mais limpo como no exemplo
+
+```javascript
+//hooks/usePokemonList.js
+import { useState } from 'react';
+import useLoadApi from './useLoadApi';
+
+const usePokemonList = () => {
+  const [url, setUrl] = useState('/pokemon');
+  const { response, error, isLoading } = useLoadApi({
+    method: 'get',
+    url: url,
+  });
+
+  const getPreviousPage = () => {
+    setUrl(response.previous);
+  };
+
+  const getNextPage = () => {
+    setUrl(response.next);
+  };
+
+  return { data: response, error, isLoading, getPreviousPage, getNextPage };
+};
+export default usePokemonList;
+```
+
+```javascript
+//utilizamos o hook assim
+const { getPreviousPage, getNextPage, data, isLoading, error } =
+  usePokemonList();
+```
+
 A biblioteca recoil foi utilizada para que dados fossem compartilhados entre componentes sem criar uma prop hell
+
+Foi utilizada ao criar o filtro de busca, onde o componente do filtro define um valor para o estado compartilhado e usamos este valor em outro componente
+
+```javascript
+//como criar um estado compartilhado com recoil
+
+const nomeDoAtomo = atom({
+   key: "chave do atomo",
+   default: "valor padrão
+})
+```
+Para utilizar o valor do atomo, utilizamos uma estrutura parecida com a do useState
+
+```javascript
+//podemos utilizar o valor e seu setter com
+const [valor, setValor] = useRecoilState(nomeDoAtomo)
+//apenas  seu valor
+const valor = useRecoilValue(nomeDoAtomo)
+// ou apenas seu setter
+const [setValor] = useSetRecoilState(nomeDoAtomo)
+```
 
 ## Como Usar
 
